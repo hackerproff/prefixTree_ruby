@@ -7,12 +7,15 @@
 #		hackerproff@yandex.ru
 #
 #		Prefix Tree
-#
+# 2
 
 
 class Tree
 
 private
+	
+	
+	
 	class Record # like a structure
 		attr_accessor :key
 		attr_accessor :is_word
@@ -38,7 +41,9 @@ private
 	public
 		def add_word!(in_word)
 			# check available key
+			print String.new("class node; add word:" + in_word) # debug
 			for iter in @list do
+				
 				if (iter.key == in_word[0])
 					if (in_word.length == 1)
 						iter.is_word = true
@@ -60,9 +65,9 @@ private
 				@list[@list.length].next_node = Node.new
 				return @list[@list.length].next_node.add_word!(String.new(in_word[1, in_word.length]))
 			end
-			
-			
 		end # add_word!
+		
+		
 	end # class Node
 
 
@@ -70,27 +75,29 @@ private
 		@root = Node.new
 		return self
 	end
+	
 
 
 public
-	def add_word!(in_word)
-		if (!(in_word.respond_to? String))
-			return false
-		end
-		
-		if (in_string.length == 0)
-			return false
-		end
-		
-		return @root.add_word!
+
+	def is_word?(in_word)
+		return ( (in_word.respond_to? String) && (!(in_string.empty?)))
 	end
 	
-	def get_words
-		return
-	end	
+	def add_word!(in_word)
+		if (is_word?(in_word))
+			return @root.add_word!
+		else
+			return false
+		end
+	end
+	
+	def get_words(in_prefix)
+		if (is_word?(in_word))
+			return @root.
+		else
+			return nil
+		end
+	end	# get_words
 	
 end # class Tree
-
-
-
-
