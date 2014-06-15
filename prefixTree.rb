@@ -51,19 +51,19 @@ private
 					end
 					
 					iter.next_node = Node.new
-					return iter.next_node.add_word!(String.new(in_word[1, in_word.length]))  # this return recursively nested value
+					return iter.next_node.add_word!(String.new(in_word[1, in_word.length-1]))  # this return recursively nested value
 				end
 			end
 			
 			# if key not available; make new rec for key
 			@list<< Record.new
-			@list[@list.length].key = in_word[0]
+			@list[@list.length-1].key = in_word[0]
 			if (in_word.length == 1)
-				@list[@list.length].is_word = true
+				@list[@list.length-1].is_word = true
 				return true
 			else
-				@list[@list.length].next_node = Node.new
-				return @list[@list.length].next_node.add_word!(String.new(in_word[1, in_word.length]))
+				@list[@list.length-1].next_node = Node.new
+				return @list[@list.length-1].next_node.add_word!(String.new(in_word[1, in_word.length-1]))
 			end
 		end # add_word!
 		
