@@ -71,14 +71,21 @@ class Tree
 			end
 			
 			flag = true
-			l = @list.length
-			
+			len = @list.length - 1
+			search_index = len
 			
 			while flag do
-				if (in_word.chr == @list[l-1])
-					@list[l-1].add_word!( tail(in_word) )
+				if (in_word.chr == @list[search_index])
+					return @list[search_index].add_word!( tail(in_word) )
+					
 				else
 					if (in_word.chr > @list[l-1])
+						
+						# in the end of array
+						if ( 
+						
+					end
+					
 				end
 			end
 
