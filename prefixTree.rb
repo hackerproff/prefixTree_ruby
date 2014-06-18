@@ -52,13 +52,14 @@ class Tree
 		attr_reader :list
 		
 		def initialize
-			
 			@list = Array.new(Record)
 			return self
-		end 
-
+		end
+		
+		
 		####################################
 		public
+		
 		
 		def add_word!(in_word)
 			
@@ -73,16 +74,20 @@ class Tree
 			flag = true
 			len = @list.length - 1
 			search_index = len
+			step = search_index / 2
 			
 			while flag do
-				if (in_word.chr == @list[search_index])
-					return @list[search_index].add_word!( tail(in_word) )
-					
+				if (in_word.chr == @list[search_index].key)
+					return @list[search_index].next_node.add_word!( tail(in_word) )
 				else
-					if (in_word.chr > @list[l-1])
+					if (in_word.chr > @list[search_index].key)
 						
 						# in the end of array
-						if ( 
+						if ( search_index == len )
+							@list.insert(search_index, in_word.chr)
+							return @list[search_index].add_word!( tail(in_word) )
+							
+						end
 						
 					end
 					
