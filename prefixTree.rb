@@ -28,12 +28,7 @@ class Tree
 	private
 	
 	def tail(in_word) 
-	# this arg can be empty; its normal for WORDEND; 
-	# for this reason, cannot use  is_word?
-		if (in_word.respond_to? String)
 			return String.new(in_word[1, (in_word.length-2)])
-		end
-			return nil
 	end
 
 
@@ -81,7 +76,7 @@ class Tree
 			
 			while flag do
 				if (in_word.chr == @list[l-1])
-					@list[l-1].add_word!(in_word[1, in_word.length-1])
+					@list[l-1].add_word!( tail(in_word) )
 				else
 					if (in_word.chr > @list[l-1])
 				end
