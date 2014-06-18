@@ -11,7 +11,9 @@
 # browsers.include?('Konqueror') #=> false
 # arr.unshift(0) #=> [0, 1, 2, 3, 4, 5, 6]
 # arr.insert(3, 'apple')  #=> [0, 1, 2, 'apple', 3, 4, 5, 6]
-# 
+# "hello".start_with?("hell")
+# "hello".each_byte {|c| print c, ' ' }
+# "hello".each_char {|c| print c, ' ' }
 
  
 class Tree
@@ -49,12 +51,14 @@ class Tree
 			
 			# check available key
 
-			#		"hello".start_with?("hell")
-			#		"hello".each_byte {|c| print c, ' ' }
-			#		"hello".each_char {|c| print c, ' ' }
 			
 			if (in_word.empty?)
-				if 
+				if (@list.include?(WORDEND))
+					return true
+				else
+					@list.unshift(WORDEND)
+					return true
+				end
 			end
 			
 			flag = true
