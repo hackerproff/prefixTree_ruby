@@ -30,11 +30,10 @@ class Tree
 	def tail(in_word) 
 	# this arg can be empty; its normal for WORDEND; 
 	# for this reason, cannot use  is_word?
-		if (is_word?(in_word))
+		if (in_word.respond_to? String)
 			return String.new(in_word[1, (in_word.length-2)])
-		else
-			return nil
 		end
+			return nil
 	end
 
 
@@ -87,7 +86,9 @@ class Tree
 					if (in_word.chr > @list[l-1])
 				end
 			end
-								
+
+
+
 				if (iter.key == in_word[0])
 					if (in_word.length == 1)
 						iter.is_word = true
