@@ -7,23 +7,27 @@
 #		hackerproff@yandex.ru
 #
 #		Prefix Tree
-# 2
+# getbyte(index) → 0 .. 255
+# browsers.include?('Konqueror') #=> false
+# arr.unshift(0) #=> [0, 1, 2, 3, 4, 5, 6]
+# arr.insert(3, 'apple')  #=> [0, 1, 2, 'apple', 3, 4, 5, 6]
+# 
 
-
+ 
 class Tree
 
-private
+	private
 	
-	
+	WORDEND = 0 
+	# sign if prefix also is word
+	# and simple rule; the sign is always in 0 position !
 	
 	class Record # like a structure
 		attr_accessor :key
-		attr_accessor :is_word
 		attr_accessor :next_node
 		
 		def initialize
-			@key = String.new("")
-			@is_word = false
+			@key = nil
 			@next_node = nil
 			return self
 		end
@@ -34,16 +38,38 @@ private
 		attr_reader :list
 		
 		def initialize
+			
 			@list = Array.new(Record)
 			return self
 		end 
 		
-	public
+		public
+		
 		def add_word!(in_word)
+			
 			# check available key
-			print String.new("class node; add word:" + in_word) # debug
-			for iter in @list do
+
+			#		"hello".start_with?("hell")
+			#		"hello".each_byte {|c| print c, ' ' }
+			#		"hello".each_char {|c| print c, ' ' }
+			
+			if (in_word.empty?)
+				if 
+			end
+			
+			flag = true
+			l = @root.list.length
+			shift = 0
+			half
+			
+			
+			
+			while flag do
 				
+				if ( @root.list[ l ] > in_word.chr )
+			
+			end
+								
 				if (iter.key == in_word[0])
 					if (in_word.length == 1)
 						iter.is_word = true
@@ -53,7 +79,7 @@ private
 					iter.next_node = Node.new
 					return iter.next_node.add_word!(String.new(in_word[1, in_word.length-1]))  # this return recursively nested value
 				end
-			end
+
 			
 			# if key not available; make new rec for key
 			@list<< Record.new
@@ -78,7 +104,7 @@ private
 	
 
 
-public
+	public
 
 	def is_word?(in_word)
 		return ( (in_word.respond_to? String) && (!(in_string.empty?)))
@@ -101,3 +127,10 @@ public
 	end	# get_words
 	
 end # class Tree
+
+
+
+
+
+
+
