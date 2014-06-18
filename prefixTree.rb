@@ -7,6 +7,12 @@
 #		hackerproff@yandex.ru
 #
 #		Prefix Tree
+#
+
+
+
+#
+#
 # getbyte(index) → 0 .. 255
 # browsers.include?('Konqueror') #=> false
 # arr.unshift(0) #=> [0, 1, 2, 3, 4, 5, 6]
@@ -18,24 +24,36 @@
  
 class Tree
 
+	####################################
 	private
 	
+	def tail(in_word) 
+	# this arg can be empty; its normal for WORDEND; 
+	# for this reason, cannot use  is_word?
+		if (is_word?(in_word))
+			return String.new(in_word[1, (in_word.length-2)])
+		else
+			return nil
+		end
+	end
+
+
 	WORDEND = 0 
 	# sign if prefix also is word
 	# and simple rule; the sign is always in 0 position !
-	
+
 	class Record # like a structure
 		attr_accessor :key
 		attr_accessor :next_node
-		
+
 		def initialize
 			@key = nil
 			@next_node = nil
 			return self
 		end
 	end # class Record
-	
-	
+
+
 	class Node
 		attr_reader :list
 		
@@ -44,34 +62,30 @@ class Tree
 			@list = Array.new(Record)
 			return self
 		end 
-		
+
+		####################################
 		public
 		
 		def add_word!(in_word)
 			
 			# check available key
-
-			
 			if (in_word.empty?)
-				if (@list.include?(WORDEND))
-					return true
-				else
+				if (!(@list.include?(WORDEND)))
 					@list.unshift(WORDEND)
-					return true
 				end
+					return true
 			end
 			
 			flag = true
-			l = @root.list.length
-			shift = 0
-			half
-			
+			l = @list.length
 			
 			
 			while flag do
-				
-				if ( @root.list[ l ] > in_word.chr )
-			
+				if (in_word.chr == @list[l-1])
+					@list[l-1].add_word!(in_word[1, in_word.length-1])
+				else
+					if (in_word.chr > @list[l-1])
+				end
 			end
 								
 				if (iter.key == in_word[0])
@@ -107,12 +121,13 @@ class Tree
 	end
 	
 
-
-	public
+	####################################
+	public 
 
 	def is_word?(in_word)
 		return ( (in_word.respond_to? String) && (!(in_string.empty?)))
 	end
+	
 	
 	def add_word!(in_word)
 		if (is_word?(in_word))
