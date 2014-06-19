@@ -108,7 +108,9 @@ class Tree
 				
 					
 					if (search_index == 0)
-					
+						if (@list[0] == WORDEND)
+						else
+						end
 					end
 					
 					if (in_word.chr > @list.[search_index-1].key)
@@ -116,7 +118,6 @@ class Tree
 					end
 				
 				end # if char < key
-			
 			end # while flag do
 		end # add_word!
 	
