@@ -23,7 +23,6 @@
 
  
 class Tree
-
 	####################################
 	private
 	
@@ -31,11 +30,16 @@ class Tree
 			return String.new(in_word[1, (in_word.length-2)])
 	end
 
+	def initialize
+		@root = Node.new
+		return self
+	end
 
 	WORDEND = 0 
 	# sign if prefix also is word
 	# and simple rule; the sign is always in 0 position !
 
+	
 	class Record # like a structure
 		attr_accessor :key
 		attr_accessor :next_node
@@ -77,47 +81,52 @@ class Tree
 			
 			# check available key
 			while true do
+				
 				if (in_word.chr == @list[search_index].key)
 					return @list[search_index].next_node.add_word!(tail(in_word))
-				else
-					if (in_word.chr > @list[search_index].key)
-						
-						if (search_index == len) # in the end of array
-							@list.insert(search_index, Node.new())
-							@list[search_index].key = in_word.chr
-							return @list[search_index].next_node.add_word!(tail(in_word))
-						end # if char > key; and in the end of array
-						
-						if (in_word.chr < @list.[search_index + 1].key) # if next value is bigger
-							@list.insert(search_index, Node.new())
-							@list[search_index+1].key = in_word.chr
-							return @list[searhc_index+1].next_node.add_word!(tail(in_word))
-						else
-							search_index += step
-							step /= 2
-							next
-						end
-					end # if char > key
-					
-					if (in_word.chr < @list.[search_index].key)
-						if (search_index == 0)
-						
-						end
-						
-						if (in_word.chr > @list.[search_index-1].key)
-						
-						end
-					end # if char < key
 				end # if char == key
+					
+				if (in_word.chr > @list[search_index].key)
+					if (search_index == len) # in the end of array
+						@list.insert(search_index, Node.new())
+						@list[search_index].key = in_word.chr
+						return @list[search_index].next_node.add_word!(tail(in_word))
+					end # if char > key; and in the end of array
+					
+					if (in_word.chr < @list.[search_index + 1].key) # if next value is bigger
+						@list.insert(search_index, Node.new())
+						@list[search_index+1].key = in_word.chr
+						return @list[searhc_index+1].next_node.add_word!(tail(in_word))
+					else
+						search_index += step
+						step /= 2
+						next
+					end
+				end # if char > key
+				
+				if (in_word.chr < @list.[search_index].key)
+				
+					
+					if (search_index == 0)
+					
+					end
+					
+					if (in_word.chr > @list.[search_index-1].key)
+					
+					end
+				
+				end # if char < key
+			
 			end # while flag do
 		end # add_word!
+	
+	
+	
+	
+	
 	end # class Node
 
 
-	def initialize
-		@root = Node.new
-		return self
-	end
 	
 
 	####################################
