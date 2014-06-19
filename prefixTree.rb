@@ -78,19 +78,20 @@ class Tree
 			# check available key
 			while true do
 				if (in_word.chr == @list[search_index].key)
-					return @list[search_index].next_node.add_word!( tail(in_word) )
-				
+					return @list[search_index].next_node.add_word!(tail(in_word))
 				else
-					
 					if (in_word.chr > @list[search_index].key)
-						
 						# in the end of array
-						if ( search_index == len )
+						if (search_index == len)
 							@list.insert(search_index, Node.new())
 							@list[search_index].key = in_word.chr
-							return @list[search_index].add_word!( tail(in_word) )
-							
+							return @list[search_index].add_word!(tail(in_word))
 						end # if char > key; and in the end of array
+						
+						if (@list.[search_index + 1].key > in_word.chr)
+							
+						end
+						
 					end # if char > key
 				end # if char == key
 			end # while flag do
