@@ -63,7 +63,7 @@ class Tree
 		
 		def add_word!(in_word)
 			
-			# check available key
+			# check word end sign
 			if (in_word.empty?)
 				if (!(@list.include?(WORDEND)))
 					@list.unshift(WORDEND)
@@ -71,28 +71,29 @@ class Tree
 					return true
 			end
 			
-			flag = true
 			len = @list.length - 1
 			search_index = len
 			step = search_index / 2
 			
-			while flag do
+			# check available key
+			while true do
 				if (in_word.chr == @list[search_index].key)
 					return @list[search_index].next_node.add_word!( tail(in_word) )
+				
 				else
+					
 					if (in_word.chr > @list[search_index].key)
 						
 						# in the end of array
 						if ( search_index == len )
-							@list.insert(search_index, in_word.chr)
+							@list.insert(search_index, Node.new())
+							@list[search_index].key = in_word.chr
 							return @list[search_index].add_word!( tail(in_word) )
 							
-						end
-						
-					end
-					
-				end
-			end
+						end # if char > key; and in the end of array
+					end # if char > key
+				end # if char == key
+			end # while flag do
 
 
 
