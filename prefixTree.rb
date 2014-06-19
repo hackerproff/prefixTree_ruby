@@ -101,38 +101,16 @@ class Tree
 					
 					if (in_word.chr < @list.[search_index].key)
 						if (search_index == 0)
+						
 						end
-						if (in_word.chr > @list.[search_index-1]
+						
+						if (in_word.chr > @list.[search_index-1].key)
+						
+						end
 					end # if char < key
 				end # if char == key
 			end # while flag do
-
-
-
-				if (iter.key == in_word[0])
-					if (in_word.length == 1)
-						iter.is_word = true
-						return true
-					end
-					
-					iter.next_node = Node.new
-					return iter.next_node.add_word!(String.new(in_word[1, in_word.length-1]))  # this return recursively nested value
-				end
-
-			
-			# if key not available; make new rec for key
-			@list<< Record.new
-			@list[@list.length-1].key = in_word[0]
-			if (in_word.length == 1)
-				@list[@list.length-1].is_word = true
-				return true
-			else
-				@list[@list.length-1].next_node = Node.new
-				return @list[@list.length-1].next_node.add_word!(String.new(in_word[1, in_word.length-1]))
-			end
 		end # add_word!
-		
-		
 	end # class Node
 
 
