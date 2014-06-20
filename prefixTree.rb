@@ -91,7 +91,7 @@ class Tree
 						@list.insert(search_index, Node.new())
 						@list[search_index].key = in_word.chr
 						return @list[search_index].next_node.add_word!(tail(in_word))
-					end # if char > key; and in the end of array
+					end
 					
 					if (in_word.chr < @list.[search_index + 1].key) # if next value is bigger
 						@list.insert(search_index, Node.new())
@@ -99,6 +99,7 @@ class Tree
 						return @list[searhc_index+1].next_node.add_word!(tail(in_word))
 					else
 						search_index += step
+						search_index %= len
 						step /= 2
 						next
 					end
@@ -106,11 +107,16 @@ class Tree
 				
 				if (in_word.chr < @list.[search_index].key)
 				
-					
 					if (search_index == 0)
 						if (@list[0] == WORDEND)
+							@list.insert(0, Node.new())
+							@list.[1].key = in_word.chr
+							return @list[1].next_node.add_word!(tail(in_word))
 						else
+							@list.unshift(Node.new())
 						end
+					else
+					0
 					end
 					
 					if (in_word.chr > @list.[search_index-1].key)
