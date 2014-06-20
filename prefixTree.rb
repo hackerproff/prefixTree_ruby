@@ -81,6 +81,7 @@ class Tree
 			
 			# check available key
 			while true do
+				if (step == 0); step = 1; end;
 				
 				if (in_word.chr == @list[search_index].key)
 					return @list[search_index].next_node.add_word!(tail(in_word))
@@ -110,19 +111,25 @@ class Tree
 					if (search_index == 0)
 						if (@list[0] == WORDEND)
 							@list.insert(0, Node.new())
-							@list.[1].key = in_word.chr
+							@list[1].key = in_word.chr
 							return @list[1].next_node.add_word!(tail(in_word))
 						else
 							@list.unshift(Node.new())
+							@list[0].key = in_word.chr
+							return @list[0].next_node.add_word!(tail(in_word))
 						end
 					else
-					0
+						if	(in_word.chr > @list.[search_index - 1].key)
+							@list.insert((search_index - 1), Node.new())
+							@list[search_index - 1].key = in_word.chr
+							return @list[search_index - 1].next_node.add_word!(tail(in_word))
+						else
+							search_index -= step
+							step /=2
+							if (search_index < 0); search_index = 0; end;
+							next
+						end
 					end
-					
-					if (in_word.chr > @list.[search_index-1].key)
-					
-					end
-				
 				end # if char < key
 			end # while flag do
 		end # add_word!
