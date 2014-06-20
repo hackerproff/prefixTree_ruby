@@ -100,8 +100,8 @@ class Tree
 						return @list[searhc_index+1].next_node.add_word!(tail(in_word))
 					else
 						search_index += step
-						search_index %= len
 						step /= 2
+						if (search_index > len); search_index = len; end;
 						next
 					end
 				end # if char > key
